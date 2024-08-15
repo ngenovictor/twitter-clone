@@ -46,25 +46,32 @@ class LeftPanel extends StatelessWidget {
       },
     );
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-            const Image(
-              image: AssetImage("lib/assets/logo-white.png"),
-              height: 50,
+    return Column(children: [
+      Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+                const Image(
+                  image: AssetImage("lib/assets/logo-white.png"),
+                  height: 50,
+                ),
+                _spaceBetween
+              ] +
+              panelIcons),
+      Container(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(29, 155, 240, 1),
+                foregroundColor: Colors.white, // for
+                padding: EdgeInsets.only(top: 20, bottom: 20)),
+            child: Text(
+              "Post",
+              style: _textStyle.copyWith(fontWeight: FontWeight.w800),
             ),
-            _spaceBetween
-          ] +
-          panelIcons +
-          [
-            ElevatedButton(
-              onPressed: null,
-              style: _buttonStyle,
-              child: const Text("Post"),
-            )
-          ],
-    );
+          ))
+    ]);
   }
 }
