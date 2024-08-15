@@ -143,10 +143,28 @@ class FeedPanel extends StatelessWidget {
         ));
   }
 
+  Widget getNewPostsCountSection() {
+    return DecoratedBox(
+        decoration: BoxDecoration(
+            border: Border(
+                left: _borderSide, right: _borderSide, bottom: _borderSide)),
+        child: Padding(
+            padding: const EdgeInsets.only(bottom: 10, top: 10),
+            child: Center(
+                child: ElevatedButton(
+                    onPressed: () {},
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                    child: const Text(
+                      "Show 210 posts",
+                      style: TextStyle(color: Color.fromRGBO(29, 155, 240, 1)),
+                    )))));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [getTopPart(), getNewTweetPart()],
+      children: [getTopPart(), getNewTweetPart(), getNewPostsCountSection()],
     );
   }
 }
