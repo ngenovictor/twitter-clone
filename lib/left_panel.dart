@@ -64,9 +64,9 @@ class LeftPanel extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(29, 155, 240, 1),
+                backgroundColor: const Color.fromRGBO(29, 155, 240, 1),
                 foregroundColor: Colors.white, // for
-                padding: EdgeInsets.only(top: 20, bottom: 20)),
+                padding: const EdgeInsets.only(top: 20, bottom: 20)),
             child: Text(
               "Post",
               style: _textStyle.copyWith(fontWeight: FontWeight.w800),
