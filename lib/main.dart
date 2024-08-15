@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/feed_panel.dart';
 import 'package:twitter/left_panel.dart';
 
 void main() {
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
         body: DefaultTextStyle(
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
             child: Container(
               height: double.infinity,
               color: Colors.black,
@@ -80,14 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: LeftPanel(),
                   ),
                   Container(
-                    color: Colors.amber,
                     width: 566,
-                    child: Text("Feed"),
+                    child: const FeedPanel(),
                   ),
                   Container(
                     color: Colors.blue,
                     width: 316,
-                    child: Text("right pabel"),
+                    child: const Text("right pabel"),
                   ),
                 ],
               ), // This trailing comma makes auto-formatting nicer for build methods.
