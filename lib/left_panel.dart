@@ -2,38 +2,69 @@ import 'package:flutter/material.dart';
 
 class LeftPanel extends StatelessWidget {
   final ButtonStyle _buttonStyle = ButtonStyle(
-  foregroundColor: WidgetStateColor.resolveWith((Set<WidgetState> _) {
-    return Colors.white;
-  }),
-
+    foregroundColor: WidgetStateColor.resolveWith((Set<WidgetState> _) {
+      return Colors.white;
+    }),
   );
+  final TextStyle _textStyle = const TextStyle(fontSize: 20);
+  final SizedBox _spaceBetween = const SizedBox(
+    height: 20,
+  );
+  final Map<String, IconData> _iconElements = {
+    "Home": Icons.home,
+    "Explore": Icons.search,
+    "Notifications": Icons.blender_outlined,
+    "Messages": Icons.message,
+    "Grok": Icons.home,
+    "Lists": Icons.chrome_reader_mode_outlined,
+    "Bookmarks": Icons.bookmark,
+    "Communities": Icons.people,
+    "Premium": Icons.flash_on,
+    "verified Orgs": Icons.flash_on,
+    "Profile": Icons.person_outline,
+    "More": Icons.more_horiz
+  };
+
   LeftPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> panelIcons = [];
+    _iconElements.forEach(
+      (String iconText, IconData icon) {
+        panelIcons.add(Container(
+            child: ElevatedButton.icon(
+          onPressed: null,
+          icon: Icon(icon),
+          label: Text(
+            iconText,
+            style: _textStyle,
+          ),
+          style: _buttonStyle,
+        )));
+        panelIcons.add(_spaceBetween);
+      },
+    );
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image(
-          image: AssetImage("lib/assets/logo-white.png"),
-          height: 50,
-        ),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.home), label: Text("Home"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.search), label: Text("Explore"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.blender_outlined), label: Text("Notifications"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.message), label: Text("Messages"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.home), label: Text("Grok"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.chrome_reader_mode_outlined), label: Text("Lists"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.bookmark), label: Text("Bookmarks"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.people), label: Text("Communities"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.flash_on), label: Text("Premium"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.flash_on), label: Text("verified Orgs"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.person_outline), label: Text("Profile"), style: _buttonStyle,)),
-        Container(child: ElevatedButton.icon(onPressed: null, icon:Icon(Icons.more_horiz), label: Text("More"), style: _buttonStyle,)),
-        ElevatedButton(onPressed: null, child: Text("Post"), style: _buttonStyle,)
-      ],
+            const Image(
+              image: AssetImage("lib/assets/logo-white.png"),
+              height: 50,
+            ),
+            _spaceBetween
+          ] +
+          panelIcons +
+          [
+            ElevatedButton(
+              onPressed: null,
+              style: _buttonStyle,
+              child: const Text("Post"),
+            )
+          ],
     );
   }
 }
