@@ -162,6 +162,21 @@ Widget getNewPostsCountSection() {
                   )))));
 }
 
+String getTimeAgo(DateTime timeNow, DateTime tweetTime) {
+  Duration timeDiff = timeNow.difference(tweetTime);
+  if (timeDiff < const Duration(days: 1)) {
+    if (timeDiff < const Duration(hours: 1)) {
+      return "${timeDiff.inMinutes}m";
+    }
+    return "${timeDiff.inHours}h";
+  }
+  return "${timeDiff.inDays}d";
+}
+
+DateTime getTweetTime(String tweetTime) {
+  return DateTime.parse(tweetTime);
+}
+
 Widget getTweetsSection(List<Tweet> tweets) {
   if (tweets.isEmpty) {
     return const Padding(
@@ -172,7 +187,11 @@ Widget getTweetsSection(List<Tweet> tweets) {
         )));
   }
   List<Widget> tweetWidgets = [];
+  DateTime timeNow = DateTime.now(); // TODO: should be UTC
+
   for (var tweet in tweets) {
+    DateTime tweetTime = getTweetTime(tweet.timePosted);
+    String timeAgo = getTimeAgo(timeNow, tweetTime);
     tweetWidgets.add(DecoratedBox(
         decoration: const BoxDecoration(
             border: Border(
@@ -197,10 +216,10 @@ Widget getTweetsSection(List<Tweet> tweets) {
                         width: 5,
                       ),
                       Text(
-                        "@" + tweet.username,
+                        "@${tweet.username} - $timeAgo",
                         style: const TextStyle(
                             color: Color.fromARGB(255, 124, 124, 124)),
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(
