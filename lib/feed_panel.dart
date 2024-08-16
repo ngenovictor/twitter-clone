@@ -171,7 +171,67 @@ Widget getTweetsSection(List<Tweet> tweets) {
           color: Color.fromRGBO(29, 155, 240, 1),
         )));
   }
-  return Text("tweets");
+  List<Widget> tweetWidgets = [];
+  for (var tweet in tweets) {
+    tweetWidgets.add(DecoratedBox(
+        decoration: const BoxDecoration(
+            border: Border(
+                left: _borderSide, bottom: _borderSide, right: _borderSide)),
+        child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Image.network(
+                tweet.profilePhotoUrl,
+                width: 40,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(tweet.name),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "@" + tweet.username,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 124, 124, 124)),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(width: 480, child: Text(tweet.message)),
+                  if (tweet.photoPath != null)
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  if (tweet.photoPath != null)
+                    Container(
+                        decoration: const BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50))),
+                        child: Image.asset(
+                          tweet.photoPath!,
+                          width: 480,
+                          fit: BoxFit.cover,
+                        ))
+
+                  // Expanded(
+                  //     child: Container(
+                  //         height: 100, width: 100, child: Text(tweet.message))),
+                ],
+              ),
+            ]))));
+  }
+  return Column(
+    children: tweetWidgets,
+  );
 }
 
 class FeedState extends State {
@@ -186,7 +246,8 @@ class FeedState extends State {
       for (var jsonValue in jsonData) {
         apiTweets.add(Tweet.fromJson(jsonValue));
       }
-      Future.delayed(const Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 0), () {
+        // TODO: delay by 2 seconds to emulate API
         // Delay a bit to enjoy the loading widget
         setState(() {
           tweets = apiTweets;
