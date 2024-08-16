@@ -84,11 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 566,
                     child: const FeedPanel(),
                   ),
-                  Container(
-                    color: Colors.blue,
-                    width: 316,
-                    child: const Text("right pabel"),
-                  ),
+                  if (MediaQuery.of(context).size.width > 1141)
+                    Container(
+                      color: Colors.blue,
+                      width: 316,
+                      child: const Text("right pabel"),
+                    ),
                 ],
               ), // This trailing comma makes auto-formatting nicer for build methods.
             )));
