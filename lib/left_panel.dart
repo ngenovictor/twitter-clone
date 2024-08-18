@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LeftPanel extends StatelessWidget {
-  final ButtonStyle _buttonStyle = ButtonStyle(
-    foregroundColor: WidgetStateColor.resolveWith((Set<WidgetState> _) {
-      return Colors.white;
-    }),
-  );
-  final TextStyle _textStyle = const TextStyle(fontSize: 20);
   final SizedBox _spaceBetween = const SizedBox(
-    height: 20,
+    height: 10,
   );
   final Map<String, IconData> _iconElements = {
     "Home": Icons.home,
@@ -32,46 +26,62 @@ class LeftPanel extends StatelessWidget {
     List<Widget> panelIcons = [];
     _iconElements.forEach(
       (String iconText, IconData icon) {
-        panelIcons.add(Container(
-            child: ElevatedButton.icon(
-          onPressed: null,
-          icon: Icon(icon),
-          label: Text(
-            iconText,
-            style: _textStyle,
+        panelIcons.add(
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                overlayColor: const Color.fromARGB(255, 238, 238, 238),
+                padding: const EdgeInsets.all(20)),
+            child: Row(
+              children: [
+                Icon(icon),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  iconText,
+                  style: const TextStyle(fontSize: 20),
+                )
+              ],
+            ),
           ),
-          style: _buttonStyle,
-        )));
+        );
         panelIcons.add(_spaceBetween);
       },
     );
 
-    return Column(children: [
-      Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
+    return Padding(
+        padding: const EdgeInsets.only(right: 30),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
                 const Image(
                   image: AssetImage("lib/assets/logo-white.png"),
                   height: 50,
                 ),
-                _spaceBetween
+                _spaceBetween,
               ] +
-              panelIcons),
-      Container(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(29, 155, 240, 1),
-                foregroundColor: Colors.white, // for
-                padding: const EdgeInsets.only(top: 20, bottom: 20)),
-            child: Text(
-              "Post",
-              style: _textStyle.copyWith(fontWeight: FontWeight.w800),
-            ),
-          ))
-    ]);
+              panelIcons +
+              [
+                _spaceBetween,
+                SizedBox(
+                    width: 300,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(29, 155, 240, 1),
+                          foregroundColor: Colors.white, // for
+                          padding: const EdgeInsets.only(top: 20, bottom: 20)),
+                      child: const Text(
+                        "Post",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w800),
+                      ),
+                    ))
+              ],
+        ));
   }
 }
