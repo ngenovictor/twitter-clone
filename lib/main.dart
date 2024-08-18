@@ -74,10 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                width: 259,
-                child: LeftPanel(),
-              ),
+              LeftPanel(),
               Container(
                 width: 566,
                 child: const FeedPanel(),
