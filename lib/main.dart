@@ -67,32 +67,30 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+        backgroundColor: Colors.black,
         body: DefaultTextStyle(
-            style: const TextStyle(color: Colors.white),
-            child: Container(
-              height: double.infinity,
-              color: Colors.black,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 259,
-                    child: LeftPanel(),
-                  ),
-                  Container(
-                    width: 566,
-                    child: const FeedPanel(),
-                  ),
-                  if (MediaQuery.of(context).size.width > 1141)
-                    Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Container(
-                          width: 316,
-                          child: const Text("TODO: right panel"),
-                        )),
-                ],
-              ), // This trailing comma makes auto-formatting nicer for build methods.
-            )));
+          style: const TextStyle(color: Colors.white),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                width: 259,
+                child: LeftPanel(),
+              ),
+              Container(
+                width: 566,
+                child: const FeedPanel(),
+              ),
+              if (MediaQuery.of(context).size.width > 1141)
+                Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Container(
+                      width: 316,
+                      child: const Text("TODO: right panel"),
+                    )),
+            ],
+          ), // This trailing comma makes auto-formatting nicer for build methods.
+        ));
   }
 }
