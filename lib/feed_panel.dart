@@ -286,6 +286,7 @@ class FeedState extends State {
         decoration: const BoxDecoration(
             border: Border(left: _borderSide, right: _borderSide)),
         child: Column(
+crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             getTopPart(),
             // getNewTweetPart(),
