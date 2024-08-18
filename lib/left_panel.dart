@@ -40,10 +40,11 @@ class LeftPanel extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(
-                  iconText,
-                  style: const TextStyle(fontSize: 20),
-                )
+                if (MediaQuery.of(context).size.width >= 1295)
+                  Text(
+                    iconText,
+                    style: const TextStyle(fontSize: 20),
+                  )
               ],
             ),
           ),
@@ -66,21 +67,29 @@ class LeftPanel extends StatelessWidget {
               panelIcons +
               [
                 _spaceBetween,
-                SizedBox(
-                    width: 300,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(29, 155, 240, 1),
-                          foregroundColor: Colors.white, // for
-                          padding: const EdgeInsets.only(top: 20, bottom: 20)),
-                      child: const Text(
-                        "Post",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w800),
-                      ),
-                    ))
+                if (MediaQuery.of(context).size.width >= 1295)
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(29, 155, 240, 1),
+                        foregroundColor: Colors.white, // for
+                        padding: const EdgeInsets.only(
+                            left: 100, top: 20, right: 100, bottom: 20)),
+                    child: const Text(
+                      "Post",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                if (MediaQuery.of(context).size.width < 1295)
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(29, 155, 240, 1),
+                        foregroundColor: Colors.white, // for
+                        padding: const EdgeInsets.only(top: 20, bottom: 20)),
+                    child: const Icon(Icons.chat),
+                  )
               ],
         ));
   }
