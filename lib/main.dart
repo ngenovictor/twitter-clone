@@ -68,26 +68,26 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
         backgroundColor: Colors.black,
-        body: DefaultTextStyle(
-          style: const TextStyle(color: Colors.white),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              LeftPanel(),
-              Container(
-                width: 566,
-                child: const FeedPanel(),
-              ),
-              if (MediaQuery.of(context).size.width > 1141)
-                Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Container(
-                      width: 316,
-                      child: const Text("TODO: right panel"),
-                    )),
-            ],
-          ), // This trailing comma makes auto-formatting nicer for build methods.
-        ));
+        body: SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: DefaultTextStyle(
+              style: const TextStyle(color: Colors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  LeftPanel(),
+                  FeedPanel(),
+                  if (MediaQuery.of(context).size.width > 1141)
+                    Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Container(
+                          width: 316,
+                          child: const Text("TODO: right panel"),
+                        )),
+                ],
+              ), // This trailing comma makes auto-formatting nicer for build methods.
+            )));
   }
 }
