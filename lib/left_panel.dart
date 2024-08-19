@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/responsive.dart';
 
 class LeftPanel extends StatelessWidget {
   final SizedBox _spaceBetween = const SizedBox(
@@ -18,8 +19,9 @@ class LeftPanel extends StatelessWidget {
     "Profile": Icons.person_outline,
     "More": Icons.more_horiz
   };
+  bool isDrawerItems;
 
-  LeftPanel({super.key});
+  LeftPanel({super.key, this.isDrawerItems = false});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class LeftPanel extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                if (MediaQuery.of(context).size.width >= 1295)
+                if (isDrawerItems || Responsive.isDesktop(context))
                   Text(
                     iconText,
                     style: const TextStyle(fontSize: 20),
@@ -67,7 +69,8 @@ class LeftPanel extends StatelessWidget {
               panelIcons +
               [
                 _spaceBetween,
-                if (MediaQuery.of(context).size.width >= 1295)
+                if (Responsive.isMobile(context) ||
+                    Responsive.isDesktop(context))
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
@@ -81,7 +84,7 @@ class LeftPanel extends StatelessWidget {
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
                     ),
                   ),
-                if (MediaQuery.of(context).size.width < 1295)
+                if (Responsive.isTablet(context))
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(

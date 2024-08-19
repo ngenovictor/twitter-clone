@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/feed_panel.dart';
 import 'package:twitter/left_panel.dart';
+import 'package:twitter/responsive.dart';
 import 'package:twitter/right_panel.dart';
 
 void main() {
@@ -32,6 +33,7 @@ class Twitter extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        textTheme: TextTheme(bodySmall: TextStyle(color: Colors.white)),
         fontFamily: "Roboto",
         useMaterial3: true,
       ),
@@ -58,6 +60,25 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+class HomeDrawer extends StatelessWidget {
+  const HomeDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+        backgroundColor: Colors.black,
+        child: DefaultTextStyle(
+          style: TextStyle(color: Colors.white),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              LeftPanel(isDrawerItems: true),
+            ],
+          ),
+        ));
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -69,6 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
         backgroundColor: Colors.black,
+        drawer: Responsive.isMobile(context) ? HomeDrawer() : null,
+        appBar: Responsive.isMobile(context)
+            ? AppBar(
+                backgroundColor: Colors.black,
+              )
+            : null,
         body: SizedBox(
             width: double.infinity,
             height: double.infinity,
@@ -78,10 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  LeftPanel(),
+                  if (!Responsive.isMobile(context)) LeftPanel(),
                   const FeedPanel(),
-                  if (MediaQuery.of(context).size.width > 1141)
-                    const RightPanel(),
+                  if (Responsive.isDesktop(context)) const RightPanel(),
                 ],
               ), // This trailing comma makes auto-formatting nicer for build methods.
             )));
