@@ -22,13 +22,13 @@ Widget getTopPart() {
                   foregroundColor: Colors.white,
                   overlayColor: Colors.white,
                   shape: const RoundedRectangleBorder()),
-              child: const DecoratedBox(
+              child: DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
                               width: 4,
-                              color: Color.fromRGBO(29, 155, 240, 1)))),
-                  child: Padding(
+                              color: CustomColors.twitterBrightBlue))),
+                  child: const Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 20),
                       child: Text("For you"))))),
       Expanded(
@@ -36,7 +36,7 @@ Widget getTopPart() {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
-                  foregroundColor: const Color.fromRGBO(113, 118, 123, 1),
+                  foregroundColor: CustomColors.twitterGrey,
                   overlayColor: Colors.white,
                   shape: const RoundedRectangleBorder()),
               child: const Padding(
@@ -66,13 +66,12 @@ Widget getNewTweetPart() {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                       height: 50,
                       child: Text(
                         "What is happening?!",
                         style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(113, 118, 123, 1)),
+                            fontSize: 20, color: CustomColors.twitterGrey),
                       )),
                   SizedBox(
                     width: double.infinity,
@@ -81,43 +80,41 @@ Widget getNewTweetPart() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          const SizedBox(
+                          SizedBox(
                               child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Icon(
                                 Icons.photo_outlined,
-                                color: Color.fromRGBO(29, 155, 240, 1),
+                                color: CustomColors.twitterBrightBlue,
                               ),
                               Icon(
                                 Icons.gif_box_outlined,
-                                color: Color.fromRGBO(29, 155, 240, 1),
+                                color: CustomColors.twitterBrightBlue,
                               ),
                               Icon(
                                 Icons.mediation_rounded,
-                                color: Color.fromRGBO(29, 155, 240, 1),
+                                color: CustomColors.twitterBrightBlue,
                               ),
                               Icon(
                                 Icons.emoji_emotions_outlined,
-                                color: Color.fromRGBO(29, 155, 240, 1),
+                                color: CustomColors.twitterBrightBlue,
                               ),
                               Icon(
                                 Icons.calendar_today_outlined,
-                                color: Color.fromRGBO(29, 155, 240, 1),
+                                color: CustomColors.twitterBrightBlue,
                               ),
                               Icon(
                                 Icons.location_on_outlined,
-                                color: Color.fromRGBO(29, 155, 240, 1),
+                                color: CustomColors.twitterDullBlue,
                               )
                             ],
                           )),
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 14, 83, 129),
-                              foregroundColor:
-                                  const Color.fromRGBO(92, 92, 92, 1),
+                              backgroundColor: CustomColors.twitterDullBlue,
+                              foregroundColor: CustomColors.twitterGrey,
                             ),
                             child: const Text(
                               "Post",
@@ -145,9 +142,9 @@ Widget getNewPostsCountSection() {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       overlayColor: Colors.white),
-                  child: const Text(
+                  child: Text(
                     "Show 210 posts",
-                    style: TextStyle(color: Color.fromRGBO(29, 155, 240, 1)),
+                    style: TextStyle(color: CustomColors.twitterBrightBlue),
                   )))));
 }
 
@@ -169,17 +166,17 @@ DateTime getTweetTime(String tweetTime) {
 List<Widget> getTweetsSection(List<Tweet> tweets) {
   if (tweets.isEmpty) {
     return [
-      const Padding(
+      Padding(
           padding: EdgeInsets.all(20),
           child: Center(
               child: CircularProgressIndicator(
-            color: Color.fromRGBO(29, 155, 240, 1),
+            color: CustomColors.twitterBrightBlue,
           )))
     ];
   }
   List<Widget> tweetWidgets = [];
   DateTime timeNow = DateTime.now(); // TODO: should be UTC
-  Color greyTextColor = const Color.fromARGB(255, 124, 124, 124);
+  Color greyTextColor = CustomColors.twitterGrey;
 
   for (var tweet in tweets) {
     DateTime tweetTime = getTweetTime(tweet.timePosted);
