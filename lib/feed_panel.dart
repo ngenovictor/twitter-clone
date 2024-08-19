@@ -163,14 +163,16 @@ DateTime getTweetTime(String tweetTime) {
   return DateTime.parse(tweetTime);
 }
 
-Widget getTweetsSection(List<Tweet> tweets) {
+List<Widget> getTweetsSection(List<Tweet> tweets) {
   if (tweets.isEmpty) {
-    return const Padding(
-        padding: EdgeInsets.all(20),
-        child: Center(
-            child: CircularProgressIndicator(
-          color: Color.fromRGBO(29, 155, 240, 1),
-        )));
+    return [
+      const Padding(
+          padding: EdgeInsets.all(20),
+          child: Center(
+              child: CircularProgressIndicator(
+            color: Color.fromRGBO(29, 155, 240, 1),
+          )))
+    ];
   }
   List<Widget> tweetWidgets = [];
   DateTime timeNow = DateTime.now(); // TODO: should be UTC
@@ -304,11 +306,7 @@ Widget getTweetsSection(List<Tweet> tweets) {
               ),
             ]))));
   }
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: tweetWidgets,
-  );
+  return tweetWidgets;
 }
 
 class FeedState extends State {
@@ -339,6 +337,11 @@ class FeedState extends State {
     if (!apiCallDone) {
       getTweets();
     }
+    List<Widget> scrollableWIdgets = [
+          getNewTweetPart(),
+          getNewPostsCountSection(),
+        ] +
+        getTweetsSection(tweets);
     return Container(
         width: 566,
         margin: const EdgeInsets.only(
@@ -352,17 +355,12 @@ class FeedState extends State {
           mainAxisSize: MainAxisSize.max,
           children: [
             getTopPart(),
-            Scrollable(
-              viewportBuilder: (context, position) {
-                return Column(
-                  children: [
-                    getNewTweetPart(),
-                    getNewPostsCountSection(),
-                    getTweetsSection(tweets)
-                  ],
-                );
-              },
-            )
+            Expanded(
+                child: SingleChildScrollView(
+              child: Column(
+                children: scrollableWIdgets,
+              ),
+            ))
           ],
         ));
   }
