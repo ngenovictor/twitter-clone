@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter/api_service.dart';
 import 'package:twitter/models/tweet.dart';
+import 'package:twitter/utils.dart';
 
 const BorderSide _borderSide =
     BorderSide(color: Color.fromRGBO(47, 51, 54, 1), width: 1);
@@ -161,16 +162,6 @@ DateTime getTweetTime(String tweetTime) {
   return DateTime.parse(tweetTime);
 }
 
-String getViewCountSummaryText(int views) {
-  if (views < 1000) {
-    return "$views";
-  }
-  if (views < 1000000) {
-    return "${(views ~/ 1000)}K";
-  }
-  return "${(views ~/ 1000000)}M";
-}
-
 Widget getTweetsSection(List<Tweet> tweets) {
   if (tweets.isEmpty) {
     return const Padding(
@@ -290,7 +281,7 @@ Widget getTweetsSection(List<Tweet> tweets) {
                             color: greyTextColor,
                           ),
                           Text(
-                            getViewCountSummaryText(tweet.views),
+                            getCountSummaryText(tweet.views),
                             style: TextStyle(color: greyTextColor),
                           )
                         ])),

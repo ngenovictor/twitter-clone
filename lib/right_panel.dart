@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/utils.dart';
 
 const BorderSide _borderSide =
     BorderSide(color: Color.fromRGBO(47, 51, 54, 1), width: 1);
@@ -94,18 +95,18 @@ class RightPanel extends StatelessWidget {
                                   foregroundColor:
                                       const Color.fromRGBO(161, 161, 161, 1.0),
                                   textStyle: const TextStyle(fontSize: 13)),
-                              child: const Column(
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('1. Trending'),
-                                  SizedBox(height: 5),
-                                  Text(
+                                  const Text('1. Trending'),
+                                  const SizedBox(height: 5),
+                                  const Text(
                                     "#RejectFinanceBill2024",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 15),
                                   ),
-                                  SizedBox(height: 5),
-                                  Text("132K posts"),
+                                  const SizedBox(height: 5),
+                                  Text("${getCountSummaryText(132000)} posts"),
                                 ],
                               ),
                             ),
