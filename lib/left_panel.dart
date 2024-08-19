@@ -62,44 +62,48 @@ class LeftPanel extends StatelessWidget {
 
     return Container(
         margin: const EdgeInsets.only(right: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-                const Image(
-                  image: AssetImage("lib/assets/logo-white.png"),
-                  width: 50,
-                  height: 50,
-                ),
-                _spaceBetween,
-              ] +
-              panelIcons +
-              [
-                _spaceBetween,
-                if (Responsive.isMobile(context) ||
-                    Responsive.isDesktop(context))
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(29, 155, 240, 1),
-                        foregroundColor: Colors.white, // for
-                        padding: const EdgeInsets.only(
-                            left: 100, top: 20, right: 100, bottom: 20)),
-                    child: const Text(
-                      "Post",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
-                    ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+                  const Image(
+                    image: AssetImage("lib/assets/logo-white.png"),
+                    width: 50,
+                    height: 50,
                   ),
-                if (Responsive.isTablet(context))
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(29, 155, 240, 1),
-                        foregroundColor: Colors.white, // for
-                        padding: const EdgeInsets.only(top: 20, bottom: 20)),
-                    child: const Icon(Icons.chat),
-                  )
-              ],
+                  _spaceBetween,
+                ] +
+                panelIcons +
+                [
+                  _spaceBetween,
+                  if (Responsive.isMobile(context) ||
+                      Responsive.isDesktop(context))
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(29, 155, 240, 1),
+                          foregroundColor: Colors.white, // for
+                          padding: const EdgeInsets.only(
+                              left: 100, top: 20, right: 100, bottom: 20)),
+                      child: const Text(
+                        "Post",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                  if (Responsive.isTablet(context))
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(29, 155, 240, 1),
+                          foregroundColor: Colors.white, // for
+                          padding: const EdgeInsets.only(top: 20, bottom: 20)),
+                      child: const Icon(Icons.chat),
+                    )
+                ],
+          ),
         ));
   }
 }
