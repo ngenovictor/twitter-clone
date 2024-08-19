@@ -161,6 +161,16 @@ DateTime getTweetTime(String tweetTime) {
   return DateTime.parse(tweetTime);
 }
 
+String getViewCountSummaryText(int views) {
+  if (views < 1000) {
+    return "$views";
+  }
+  if (views < 1000000) {
+    return "${(views ~/ 1000)}K";
+  }
+  return "${(views ~/ 1000000)}M";
+}
+
 Widget getTweetsSection(List<Tweet> tweets) {
   if (tweets.isEmpty) {
     return const Padding(
@@ -280,7 +290,7 @@ Widget getTweetsSection(List<Tweet> tweets) {
                             color: greyTextColor,
                           ),
                           Text(
-                            tweet.views.toString(),
+                            getViewCountSummaryText(tweet.views),
                             style: TextStyle(color: greyTextColor),
                           )
                         ])),
