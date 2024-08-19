@@ -223,9 +223,6 @@ Widget getTweetsSection(List<Tweet> tweets) {
                             icon: Icon(Icons.more_horiz_outlined))
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     Text(tweet.message),
                     if (tweet.photoPath != null)
                       const SizedBox(
