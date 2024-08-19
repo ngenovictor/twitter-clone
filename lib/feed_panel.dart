@@ -3,12 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter/api_service.dart';
+import 'package:twitter/constants/colors.dart';
 import 'package:twitter/models/tweet.dart';
 import 'package:twitter/responsive.dart';
 import 'package:twitter/utils.dart';
 
-const BorderSide _borderSide =
-    BorderSide(color: Color.fromRGBO(47, 51, 54, 1), width: 1);
+BorderSide _borderSide =
+    BorderSide(color: CustomColors.twitterGrey, width: 0.5);
 
 Widget getTopPart() {
   return Row(
@@ -47,8 +48,8 @@ Widget getTopPart() {
 
 Widget getNewTweetPart() {
   return Container(
-      decoration: const BoxDecoration(
-          border: Border(bottom: _borderSide, top: _borderSide)),
+      decoration:
+          BoxDecoration(border: Border(bottom: _borderSide, top: _borderSide)),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
@@ -135,7 +136,7 @@ Widget getNewTweetPart() {
 
 Widget getNewPostsCountSection() {
   return DecoratedBox(
-      decoration: const BoxDecoration(border: Border(bottom: _borderSide)),
+      decoration: BoxDecoration(border: Border(bottom: _borderSide)),
       child: Padding(
           padding: const EdgeInsets.only(bottom: 10, top: 10),
           child: Center(
@@ -184,7 +185,7 @@ List<Widget> getTweetsSection(List<Tweet> tweets) {
     DateTime tweetTime = getTweetTime(tweet.timePosted);
     String timeAgo = getTimeAgo(timeNow, tweetTime);
     tweetWidgets.add(DecoratedBox(
-        decoration: const BoxDecoration(border: Border(bottom: _borderSide)),
+        decoration: BoxDecoration(border: Border(bottom: _borderSide)),
         child: Padding(
             padding: const EdgeInsets.all(10),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -349,7 +350,7 @@ class FeedState extends State {
         margin: const EdgeInsets.only(
             left: 1, right: 1), // don't cover the border??
         decoration: !Responsive.isMobile(context)
-            ? const BoxDecoration(
+            ? BoxDecoration(
                 border: Border(left: _borderSide, right: _borderSide))
             : null,
         child: Column(
