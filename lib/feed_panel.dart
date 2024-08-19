@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter/api_service.dart';
 import 'package:twitter/models/tweet.dart';
+import 'package:twitter/responsive.dart';
 import 'package:twitter/utils.dart';
 
 const BorderSide _borderSide =
@@ -342,8 +343,10 @@ class FeedState extends State {
         width: 566,
         margin: const EdgeInsets.only(
             left: 1, right: 1), // don't cover the border??
-        decoration: const BoxDecoration(
-            border: Border(left: _borderSide, right: _borderSide)),
+        decoration: !Responsive.isMobile(context)
+            ? const BoxDecoration(
+                border: Border(left: _borderSide, right: _borderSide))
+            : null,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,

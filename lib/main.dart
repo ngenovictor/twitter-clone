@@ -105,9 +105,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (!Responsive.isMobile(context)) LeftPanel(),
-                  const FeedPanel(),
-                  if (Responsive.isDesktop(context)) const RightPanel(),
+                  // mobile
+                  if (Responsive.isMobile(context))
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: const FeedPanel()),
+
+                  // tablet
+                  if (Responsive.isTablet(context))
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: LeftPanel()),
+                  if (Responsive.isTablet(context))
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: const FeedPanel()),
+                  // desktop
+                  if (Responsive.isDesktop(context))
+                    SizedBox(width: 316, child: LeftPanel()),
+                  if (Responsive.isDesktop(context))
+                    const SizedBox(width: 566, child: FeedPanel()),
+                  if (Responsive.isDesktop(context))
+                    const SizedBox(width: 316, child: RightPanel()),
                 ],
               ), // This trailing comma makes auto-formatting nicer for build methods.
             )));
