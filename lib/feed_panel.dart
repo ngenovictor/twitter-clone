@@ -204,6 +204,7 @@ Widget getTweetsSection(List<Tweet> tweets) {
                         TextButton(
                           onPressed: () {},
                           style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
                               backgroundColor: Colors.black,
                               overlayColor: Colors.black,
                               foregroundColor: Colors.white),
