@@ -1,8 +1,77 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:twitter/api_service.dart';
+import 'package:twitter/models/trend.dart';
 import 'package:twitter/utils.dart';
 
 const BorderSide _borderSide =
     BorderSide(color: Color.fromRGBO(47, 51, 54, 1), width: 1);
+
+class TrendsPanel extends StatefulWidget {
+  const TrendsPanel({super.key});
+
+  @override
+  State createState() => TrendsPanelState();
+}
+
+class TrendsPanelState extends State {
+  List<Trend> trends = [];
+  bool trendsLoaded = false;
+  getTrends() async {
+    ApiService.getTrends().then((value) {
+      for (var trend in jsonDecode(value)) {
+        trends.add(Trend.fromJson(trend));
+      }
+      setState(() {
+        trendsLoaded = true;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!trendsLoaded) {
+      getTrends();
+    }
+    List<Widget> trendsWidgets = [];
+    for (var trend in trends) {
+      trendsWidgets.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                  padding: const EdgeInsets.only(top: 20),
+                  foregroundColor: const Color.fromRGBO(161, 161, 161, 1.0),
+                  textStyle: const TextStyle(fontSize: 13)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${trend.rank}. Trending'),
+                  const SizedBox(height: 5),
+                  Text(
+                    "#${trend.topic}",
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                  const SizedBox(height: 5),
+                  Text("${getCountSummaryText(trend.tweets)} posts"),
+                ],
+              ),
+            ),
+            IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz_outlined))
+          ],
+        ),
+      );
+      trendsWidgets.add(SizedBox(height: 10));
+    }
+    return SizedBox(
+      child: Column(children: trendsWidgets),
+    );
+  }
+}
 
 class RightPanel extends StatelessWidget {
   const RightPanel({super.key});
@@ -83,39 +152,7 @@ class RightPanel extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 20)),
                       const SizedBox(height: 10),
-                      SizedBox(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  foregroundColor:
-                                      const Color.fromRGBO(161, 161, 161, 1.0),
-                                  textStyle: const TextStyle(fontSize: 13)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text('1. Trending'),
-                                  const SizedBox(height: 5),
-                                  const Text(
-                                    "#RejectFinanceBill2024",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 15),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text("${getCountSummaryText(132000)} posts"),
-                                ],
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.more_horiz_outlined))
-                          ],
-                        ),
-                      )
+                      TrendsPanel(),
                     ])),
           ),
         ],

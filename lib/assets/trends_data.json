@@ -1,0 +1,52 @@
+[
+  {
+    "rank": 1,
+    "topic": "Bitcoin",
+    "tweets": 1000000
+  },
+  {
+    "rank": 2,
+    "topic": "Ethereum",
+    "tweets": 500000
+  },
+  {
+    "rank": 3,
+    "topic": "Dogecoin",
+    "tweets": 300000
+  },
+  {
+    "rank": 4,
+    "topic": "Shiba Inu",
+    "tweets": 200000
+  },
+  {
+    "rank": 5,
+    "topic": "Cardano",
+    "tweets": 150000
+  },
+  {
+    "rank": 6,
+    "topic": "Solana",
+    "tweets": 100000
+  },
+  {
+    "rank": 7,
+    "topic": "Polkadot",
+    "tweets": 80000
+  },
+  {
+    "rank": 8,
+    "topic": "Ripple",
+    "tweets": 70000
+  },
+  {
+    "rank": 9,
+    "topic": "Litecoin",
+    "tweets": 60000
+  },
+  {
+    "rank": 10,
+    "topic": "Chainlink",
+    "tweets": 50000
+  }
+]

@@ -316,7 +316,7 @@ class FeedState extends State {
 
   void getTweets() async {
     List<Tweet> apiTweets = [];
-    ApiService.readJson().then((String value) {
+    ApiService.getTweets().then((String value) {
       List jsonData = jsonDecode(value);
 
       for (var jsonValue in jsonData) {
