@@ -167,7 +167,7 @@ List<Widget> getTweetsSection(List<Tweet> tweets) {
   if (tweets.isEmpty) {
     return [
       Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Center(
               child: CircularProgressIndicator(
             color: CustomColors.twitterBrightBlue,

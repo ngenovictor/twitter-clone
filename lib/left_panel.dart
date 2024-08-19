@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/constants/colors.dart';
 import 'package:twitter/responsive.dart';
 
 class LeftPanel extends StatelessWidget {
@@ -35,7 +36,7 @@ class LeftPanel extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
                 foregroundColor: Colors.white,
-                overlayColor: const Color.fromARGB(255, 238, 238, 238),
+                overlayColor: Colors.white,
                 padding: showIconText
                     ? const EdgeInsets.all(20)
                     : const EdgeInsets.all(20)),
@@ -81,8 +82,7 @@ class LeftPanel extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(29, 155, 240, 1),
+                          backgroundColor: CustomColors.twitterBrightBlue,
                           foregroundColor: Colors.white, // for
                           padding: const EdgeInsets.only(
                               left: 100, top: 20, right: 100, bottom: 20)),
@@ -96,8 +96,7 @@ class LeftPanel extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(29, 155, 240, 1),
+                          backgroundColor: CustomColors.twitterBrightBlue,
                           foregroundColor: Colors.white, // for
                           padding: const EdgeInsets.only(top: 20, bottom: 20)),
                       child: const Icon(Icons.chat),

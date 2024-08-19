@@ -33,7 +33,7 @@ class Twitter extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        textTheme: TextTheme(bodySmall: TextStyle(color: Colors.white)),
+        textTheme: const TextTheme(bodySmall: TextStyle(color: Colors.white)),
         fontFamily: "Roboto",
         useMaterial3: true,
       ),
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
         backgroundColor: Colors.black,
-        drawer: Responsive.isMobile(context) ? HomeDrawer() : null,
+        drawer: Responsive.isMobile(context) ? const HomeDrawer() : null,
         appBar: Responsive.isMobile(context)
             ? AppBar(
                 backgroundColor: Colors.black,

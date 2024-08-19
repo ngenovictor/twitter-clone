@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:twitter/api_service.dart';
+import 'package:twitter/constants/colors.dart';
 import 'package:twitter/models/trend.dart';
 import 'package:twitter/utils.dart';
 
-const BorderSide _borderSide =
-    BorderSide(color: Color.fromRGBO(47, 51, 54, 1), width: 1);
+BorderSide _borderSide = BorderSide(color: CustomColors.twitterGrey, width: 1);
 
 class TrendsPanel extends StatefulWidget {
   const TrendsPanel({super.key});
@@ -45,7 +45,7 @@ class TrendsPanelState extends State {
               onPressed: () {},
               style: TextButton.styleFrom(
                   padding: const EdgeInsets.only(top: 20),
-                  foregroundColor: const Color.fromRGBO(161, 161, 161, 1.0),
+                  foregroundColor: CustomColors.twitterGrey,
                   textStyle: const TextStyle(fontSize: 13)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,18 +54,19 @@ class TrendsPanelState extends State {
                   const SizedBox(height: 5),
                   Text(
                     "#${trend.topic}",
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   ),
                   const SizedBox(height: 5),
                   Text("${getCountSummaryText(trend.tweets)} posts"),
                 ],
               ),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz_outlined))
+            IconButton(
+                onPressed: () {}, icon: const Icon(Icons.more_horiz_outlined))
           ],
         ),
       );
-      trendsWidgets.add(SizedBox(height: 10));
+      trendsWidgets.add(const SizedBox(height: 10));
     }
     return SizedBox(
       child: Column(children: trendsWidgets),
@@ -88,32 +89,30 @@ class RightPanel extends StatelessWidget {
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: "Search",
-                hintStyle:
-                    const TextStyle(color: Color.fromRGBO(47, 51, 54, 1)),
+                hintStyle: TextStyle(color: CustomColors.twitterGrey),
                 prefixIcon: Icon(Icons.search, color:
                     WidgetStateColor.resolveWith((Set<WidgetState> states) {
                   // TODO: not working
                   return states.contains(WidgetState.focused)
-                      ? const Color.fromRGBO(29, 155, 240, 1)
-                      : const Color.fromRGBO(47, 51, 54, 1);
+                      ? CustomColors.twitterBrightBlue
+                      : CustomColors.twitterGrey;
                 })),
-                border: const OutlineInputBorder(
+                border: OutlineInputBorder(
                     borderSide: _borderSide,
-                    borderRadius: BorderRadius.all(Radius.circular(50))),
-                enabledBorder: const OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(50))),
+                enabledBorder: OutlineInputBorder(
                     borderSide: _borderSide,
-                    borderRadius: BorderRadius.all(Radius.circular(50))),
+                    borderRadius: const BorderRadius.all(Radius.circular(50))),
                 focusedBorder: OutlineInputBorder(
                     borderSide: _borderSide.copyWith(
-                        color: const Color.fromRGBO(29, 155, 240, 1)),
+                        color: CustomColors.twitterBrightBlue),
                     borderRadius: const BorderRadius.all(Radius.circular(50))),
               ),
             ),
             const SizedBox(height: 20),
             DecoratedBox(
               decoration: BoxDecoration(
-                  border: Border.all(
-                      color: const Color.fromRGBO(47, 51, 54, 1), width: 1),
+                  border: Border.all(color: CustomColors.twitterGrey, width: 1),
                   borderRadius: BorderRadius.circular(20)),
               child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -133,8 +132,7 @@ class RightPanel extends StatelessWidget {
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.w900, fontSize: 16),
                               foregroundColor: Colors.white,
-                              backgroundColor:
-                                  const Color.fromRGBO(29, 155, 240, 1)),
+                              backgroundColor: CustomColors.twitterBrightBlue),
                           child: const Text("Subscribe"),
                         ),
                       ])),
@@ -142,8 +140,7 @@ class RightPanel extends StatelessWidget {
             const SizedBox(height: 20),
             DecoratedBox(
               decoration: BoxDecoration(
-                  border: Border.all(
-                      color: const Color.fromRGBO(47, 51, 54, 1), width: 1),
+                  border: Border.all(color: CustomColors.twitterGrey, width: 1),
                   borderRadius: BorderRadius.circular(20)),
               child: const Padding(
                   padding: EdgeInsets.all(20),
