@@ -109,7 +109,8 @@ Widget getNewTweetPart() {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 14, 83, 129),
+                            backgroundColor:
+                                const Color.fromARGB(255, 14, 83, 129),
                             foregroundColor:
                                 const Color.fromRGBO(92, 92, 92, 1),
                           ),
@@ -170,6 +171,7 @@ Widget getTweetsSection(List<Tweet> tweets) {
   }
   List<Widget> tweetWidgets = [];
   DateTime timeNow = DateTime.now(); // TODO: should be UTC
+  Color greyTextColor = const Color.fromARGB(255, 124, 124, 124);
 
   for (var tweet in tweets) {
     DateTime tweetTime = getTweetTime(tweet.timePosted);
@@ -203,8 +205,7 @@ Widget getTweetsSection(List<Tweet> tweets) {
                         ),
                         Text(
                           "@${tweet.username} - $timeAgo",
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 124, 124, 124)),
+                          style: TextStyle(color: greyTextColor),
                         ),
                       ],
                     ),
@@ -212,7 +213,6 @@ Widget getTweetsSection(List<Tweet> tweets) {
                       height: 10,
                     ),
                     Text(tweet.message),
-
                     if (tweet.photoPath != null)
                       const SizedBox(
                         height: 10,
@@ -225,18 +225,66 @@ Widget getTweetsSection(List<Tweet> tweets) {
                     const SizedBox(
                       height: 10,
                     ),
-                    //     // Row(
-                    //     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     //   mainAxisSize: MainAxisSize.min,
-                    //     //   children: [
-                    //     //     Expanded(child: Text("sss")),
-                    //     //     Expanded(child: Text("sss")),
-                    //     //     Expanded(child: Text("sss")),
-                    //     //     Expanded(child: Text("sss")),
-                    //     //     Expanded(child: Text("sss")),
-                    //     //     Expanded(child: Text("sss")),
-                    //     //   ],
-                    //     // )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                            child: Row(children: [
+                          Icon(
+                            Icons.chat_bubble_outline,
+                            color: greyTextColor,
+                          ),
+                          Text(
+                            tweet.comments.toString(),
+                            style: TextStyle(color: greyTextColor),
+                          )
+                        ])),
+                        Expanded(
+                            child: Row(children: [
+                          Icon(
+                            Icons.recycling,
+                            color: greyTextColor,
+                          ),
+                          Text(
+                            tweet.retweets.toString(),
+                            style: TextStyle(color: greyTextColor),
+                          )
+                        ])),
+                        Expanded(
+                            child: Row(children: [
+                          Icon(
+                            Icons.favorite_border_outlined,
+                            color: greyTextColor,
+                          ),
+                          Text(
+                            tweet.likes.toString(),
+                            style: TextStyle(color: greyTextColor),
+                          )
+                        ])),
+                        Expanded(
+                            child: Row(children: [
+                          Icon(
+                            Icons.bar_chart_outlined,
+                            color: greyTextColor,
+                          ),
+                          Text(
+                            tweet.views.toString(),
+                            style: TextStyle(color: greyTextColor),
+                          )
+                        ])),
+                        Expanded(
+                            child: Row(children: [
+                          Icon(
+                            Icons.bookmark_border_outlined,
+                            color: greyTextColor,
+                          ),
+                          Icon(
+                            Icons.upload_outlined,
+                            color: greyTextColor,
+                          ),
+                        ])),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -277,6 +325,7 @@ class FeedState extends State {
     if (!apiCallDone) {
       getTweets();
     }
+    print('someti');
     return Container(
         width: 566,
         margin: const EdgeInsets.only(
