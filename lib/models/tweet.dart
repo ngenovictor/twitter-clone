@@ -5,6 +5,10 @@ class Tweet {
   String name;
   String username;
   String timePosted;
+  int comments;
+  int retweets;
+  int likes;
+  int views;
 
   Tweet.fromJson(Map<String, dynamic> json)
       : message = json["message"],
@@ -12,5 +16,9 @@ class Tweet {
         profilePhotoUrl = json['profile_photo_url'],
         name = json['name'],
         username = json['username'],
-        timePosted = json['time_posted'];
+        timePosted = json['time_posted'],
+        comments = json['comments'],
+        retweets = json['retweets'],
+        likes = json['likes'],
+        views = json['views'];
 }
