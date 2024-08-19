@@ -192,44 +192,39 @@ Widget getTweetsSection(List<Tweet> tweets) {
               ),
               Flexible(
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        children: [
-                          Text(tweet.name),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "@${tweet.username} - $timeAgo",
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 124, 124, 124)),
-                          ),
-                        ],
-                      ),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Row(
+                      children: [
+                        Text(tweet.name),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "@${tweet.username} - $timeAgo",
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 124, 124, 124)),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(tweet.message),
+
+                    if (tweet.photoPath != null)
                       const SizedBox(
                         height: 10,
                       ),
-                      Text(tweet.message),
-                    ]
-                    //     if (tweet.photoPath != null)
-                    //       const SizedBox(
-                    //         height: 10,
-                    //       ),
-                    //     if (tweet.photoPath != null)
-                    //       Container(
-                    //           decoration: const BoxDecoration(
-                    //               borderRadius:
-                    //                   BorderRadius.all(Radius.circular(50))),
-                    //           child: Image.asset(
-                    //             tweet.photoPath!,
-                    //             width: 480,
-                    //             fit: BoxFit.cover,
-                    //           )),
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
+                    if (tweet.photoPath != null)
+                      ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          child: Image.asset(tweet.photoPath!)),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     //     // Row(
                     //     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     //     //   mainAxisSize: MainAxisSize.min,
@@ -242,8 +237,8 @@ Widget getTweetsSection(List<Tweet> tweets) {
                     //     //     Expanded(child: Text("sss")),
                     //     //   ],
                     //     // )
-                    //   ],
-                    ),
+                  ],
+                ),
               ),
             ]))));
   }
