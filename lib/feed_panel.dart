@@ -325,7 +325,6 @@ class FeedState extends State {
     if (!apiCallDone) {
       getTweets();
     }
-    print('someti');
     return Container(
         width: 566,
         margin: const EdgeInsets.only(
