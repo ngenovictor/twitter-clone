@@ -96,35 +96,40 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: Colors.black,
               )
             : null,
-        body: SizedBox(
+        body: Container(
             width: double.infinity,
-            height: double.infinity,
-            child: DefaultTextStyle(
-              style: const TextStyle(color: Colors.white),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // mobile
-                  if (Responsive.isMobile(context))
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: const FeedPanel()),
+            alignment: Alignment.topCenter,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DefaultTextStyle(
+                style: const TextStyle(color: Colors.white),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // mobile limit width to min415px
+                    if (Responsive.isMobile(context))
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width < 415
+                              ? 415
+                              : MediaQuery.of(context).size.width,
+                          child: const FeedPanel()),
 
-                  // tablet
-                  if (Responsive.isTablet(context))
-                    SizedBox(width: 150, child: LeftPanel()),
-                  if (Responsive.isTablet(context))
-                    const SizedBox(width: 500, child: FeedPanel()),
-                  // desktop
-                  if (Responsive.isDesktop(context))
-                    SizedBox(width: 316, child: LeftPanel()),
-                  if (Responsive.isDesktop(context))
-                    const SizedBox(width: 566, child: FeedPanel()),
-                  if (Responsive.isDesktop(context))
-                    const SizedBox(width: 316, child: RightPanel()),
-                ],
-              ), // This trailing comma makes auto-formatting nicer for build methods.
+                    // tablet
+                    if (Responsive.isTablet(context))
+                      SizedBox(width: 150, child: LeftPanel()),
+                    if (Responsive.isTablet(context))
+                      const SizedBox(width: 500, child: FeedPanel()),
+                    // desktop
+                    if (Responsive.isDesktop(context))
+                      SizedBox(width: 316, child: LeftPanel()),
+                    if (Responsive.isDesktop(context))
+                      const SizedBox(width: 566, child: FeedPanel()),
+                    if (Responsive.isDesktop(context))
+                      const SizedBox(width: 316, child: RightPanel()),
+                  ],
+                ), // This trailing comma makes auto-formatting nicer for build methods.
+              ),
             )));
   }
 }
