@@ -37,6 +37,35 @@ class RightPanel extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(50))),
             ),
           ),
+          const SizedBox(height: 20),
+          DecoratedBox(
+            decoration: BoxDecoration(
+                border: Border.all(
+                    color: const Color.fromRGBO(47, 51, 54, 1), width: 1),
+                borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Subscribe to Premium",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 20)),
+                      const SizedBox(height: 10),
+                      const Text(
+                          "Subscribe to unlock new features and if eligible, receive a share of ads revenue."),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            textStyle: const TextStyle(
+                                fontWeight: FontWeight.w900, fontSize: 16),
+                            foregroundColor: Colors.white,
+                            backgroundColor: const Color.fromRGBO(29, 155, 240, 1)),
+                        child: const Text("Subscribe"),
+                      ),
+                    ])),
+          ),
         ],
       ),
     );
