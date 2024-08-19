@@ -61,24 +61,28 @@ Widget getNewTweetPart() {
             const SizedBox(
               width: 5,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                    height: 50,
-                    child: Text(
-                      "What is happening?!",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Color.fromRGBO(113, 118, 123, 1)),
-                    )),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const SizedBox(
-                          width: 180,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                      height: 50,
+                      child: Text(
+                        "What is happening?!",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Color.fromRGBO(113, 118, 123, 1)),
+                      )),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          const SizedBox(
+                              child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Icon(
                                 Icons.photo_outlined,
@@ -106,25 +110,23 @@ Widget getNewTweetPart() {
                               )
                             ],
                           )),
-                      Container(
-                        width: 566 / 2,
-                        alignment: Alignment.centerRight,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 14, 83, 129),
-                            foregroundColor:
-                                const Color.fromRGBO(92, 92, 92, 1),
-                          ),
-                          child: const Text(
-                            "Post",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      )
-                    ])
-              ],
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 14, 83, 129),
+                              foregroundColor:
+                                  const Color.fromRGBO(92, 92, 92, 1),
+                            ),
+                            child: const Text(
+                              "Post",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        ]),
+                  )
+                ],
+              ),
             )
           ],
         ),
