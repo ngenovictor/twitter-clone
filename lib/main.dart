@@ -78,13 +78,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   LeftPanel(),
-                  FeedPanel(),
+                  const FeedPanel(),
                   if (MediaQuery.of(context).size.width > 1141)
-                    Padding(
+                    const Padding(
                         padding: EdgeInsets.all(10),
-                        child: Container(
+                        child: SizedBox(
                           width: 316,
-                          child: const Text("TODO: right panel"),
+                          child: Text("TODO: right panel"),
                         )),
                 ],
               ), // This trailing comma makes auto-formatting nicer for build methods.
