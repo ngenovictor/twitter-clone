@@ -198,15 +198,28 @@ Widget getTweetsSection(List<Tweet> tweets) {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(tweet.name),
-                        const SizedBox(
-                          width: 5,
+                        TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              overlayColor: Colors.black,
+                              foregroundColor: Colors.white),
+                          child: Row(children: [
+                            Text(tweet.name),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "@${tweet.username} - $timeAgo",
+                              style: TextStyle(color: greyTextColor),
+                            )
+                          ]),
                         ),
-                        Text(
-                          "@${tweet.username} - $timeAgo",
-                          style: TextStyle(color: greyTextColor),
-                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.more_horiz_outlined))
                       ],
                     ),
                     const SizedBox(
