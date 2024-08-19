@@ -61,9 +61,60 @@ class RightPanel extends StatelessWidget {
                             textStyle: const TextStyle(
                                 fontWeight: FontWeight.w900, fontSize: 16),
                             foregroundColor: Colors.white,
-                            backgroundColor: const Color.fromRGBO(29, 155, 240, 1)),
+                            backgroundColor:
+                                const Color.fromRGBO(29, 155, 240, 1)),
                         child: const Text("Subscribe"),
                       ),
+                    ])),
+          ),
+          const SizedBox(height: 20),
+          DecoratedBox(
+            decoration: BoxDecoration(
+                border: Border.all(
+                    color: const Color.fromRGBO(47, 51, 54, 1), width: 1),
+                borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Trends",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 20)),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextButton(
+                              onPressed: () {},
+                              style: TextButton.styleFrom(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  foregroundColor:
+                                      const Color.fromRGBO(161, 161, 161, 1.0),
+                                  textStyle: const TextStyle(fontSize: 13)),
+                              child: const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('1. Trending'),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "#RejectFinanceBill2024",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text("132K posts"),
+                                ],
+                              ),
+                            ),
+                            IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.more_horiz_outlined))
+                          ],
+                        ),
+                      )
                     ])),
           ),
         ],
