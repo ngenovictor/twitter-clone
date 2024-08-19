@@ -65,7 +65,7 @@ flutter:
     - lib/assets/logo-white.png
     - lib/assets/logo-black.png
     - lib/assets/profile-pic.jpg
-    - lib/assets/data.json
+    - lib/assets/tweets_data.json
     - lib/assets/aljazera.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
