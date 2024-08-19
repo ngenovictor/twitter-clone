@@ -10,29 +10,34 @@ const BorderSide _borderSide =
 Widget getTopPart() {
   return Row(
     children: [
-      ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
-              foregroundColor: Colors.white,
-              overlayColor: Colors.white,
-              shape: const RoundedRectangleBorder()),
-          child: const DecoratedBox(
-              decoration: BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(
-                          width: 4, color: Color.fromRGBO(29, 155, 240, 1)))),
-              child: Padding(
-                  padding: EdgeInsets.only(bottom: 10),
-                  child: Text("For you")))),
-      ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
-              foregroundColor: const Color.fromRGBO(113, 118, 123, 1),
-              overlayColor: Colors.white,
-              shape: const RoundedRectangleBorder()),
-          child: const Text("Following")),
+      Expanded(
+          child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                  overlayColor: Colors.white,
+                  shape: const RoundedRectangleBorder()),
+              child: const DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                              width: 4,
+                              color: Color.fromRGBO(29, 155, 240, 1)))),
+                  child: Padding(
+                      padding: EdgeInsets.only(top: 20, bottom: 20),
+                      child: Text("For you"))))),
+      Expanded(
+          child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: const Color.fromRGBO(113, 118, 123, 1),
+                  overlayColor: Colors.white,
+                  shape: const RoundedRectangleBorder()),
+              child: const Padding(
+                  padding: EdgeInsets.only(top: 20, bottom: 20),
+                  child: Text("Following")))),
     ],
   );
 }
@@ -40,8 +45,7 @@ Widget getTopPart() {
 Widget getNewTweetPart() {
   return Container(
       decoration: const BoxDecoration(
-          border: Border(
-              bottom: _borderSide, left: _borderSide, right: _borderSide)),
+          border: Border(bottom: _borderSide, top: _borderSide)),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
@@ -105,13 +109,13 @@ Widget getNewTweetPart() {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromRGBO(29, 155, 240, 1),
+                            backgroundColor: Color.fromARGB(255, 14, 83, 129),
                             foregroundColor:
                                 const Color.fromRGBO(92, 92, 92, 1),
                           ),
                           child: const Text(
                             "Post",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                       )
@@ -125,16 +129,15 @@ Widget getNewTweetPart() {
 
 Widget getNewPostsCountSection() {
   return DecoratedBox(
-      decoration: const BoxDecoration(
-          border: Border(
-              left: _borderSide, right: _borderSide, bottom: _borderSide)),
+      decoration: const BoxDecoration(border: Border(bottom: _borderSide)),
       child: Padding(
           padding: const EdgeInsets.only(bottom: 10, top: 10),
           child: Center(
               child: ElevatedButton(
                   onPressed: () {},
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      overlayColor: Colors.white),
                   child: const Text(
                     "Show 210 posts",
                     style: TextStyle(color: Color.fromRGBO(29, 155, 240, 1)),
@@ -172,9 +175,7 @@ Widget getTweetsSection(List<Tweet> tweets) {
     DateTime tweetTime = getTweetTime(tweet.timePosted);
     String timeAgo = getTimeAgo(timeNow, tweetTime);
     tweetWidgets.add(DecoratedBox(
-        decoration: const BoxDecoration(
-            border: Border(
-                left: _borderSide, bottom: _borderSide, right: _borderSide)),
+        decoration: const BoxDecoration(border: Border(bottom: _borderSide)),
         child: Padding(
             padding: const EdgeInsets.all(10),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -185,71 +186,72 @@ Widget getTweetsSection(List<Tweet> tweets) {
               const SizedBox(
                 width: 10,
               ),
-              Column(
-                  // crossAxisAlignment: CrossAxisAlignment.stretch,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      children: [
-                        Text(tweet.name),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "@${tweet.username} - $timeAgo",
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 124, 124, 124)),
-                        ),
-                      ],
+              Container(
+                color: Colors.green,
+                height: 10,
+              ),
+              Flexible(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        children: [
+                          Text(tweet.name),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "@${tweet.username} - $timeAgo",
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 124, 124, 124)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(tweet.message),
+                    ]
+                    //     if (tweet.photoPath != null)
+                    //       const SizedBox(
+                    //         height: 10,
+                    //       ),
+                    //     if (tweet.photoPath != null)
+                    //       Container(
+                    //           decoration: const BoxDecoration(
+                    //               borderRadius:
+                    //                   BorderRadius.all(Radius.circular(50))),
+                    //           child: Image.asset(
+                    //             tweet.photoPath!,
+                    //             width: 480,
+                    //             fit: BoxFit.cover,
+                    //           )),
+                    //     SizedBox(
+                    //       height: 10,
+                    //     ),
+                    //     // Row(
+                    //     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     //   mainAxisSize: MainAxisSize.min,
+                    //     //   children: [
+                    //     //     Expanded(child: Text("sss")),
+                    //     //     Expanded(child: Text("sss")),
+                    //     //     Expanded(child: Text("sss")),
+                    //     //     Expanded(child: Text("sss")),
+                    //     //     Expanded(child: Text("sss")),
+                    //     //     Expanded(child: Text("sss")),
+                    //     //   ],
+                    //     // )
+                    //   ],
                     ),
-                    // const SizedBox(
-                    //   height: 10,
-                    // ),
-                    // Container(
-                    //   color: Colors.red,
-                    //   width: 100,
-                    //   height: 10,
-                    // ),
-                    // SizedBox(child: Text(tweet.message)),
-                  ]
-                  //     if (tweet.photoPath != null)
-                  //       const SizedBox(
-                  //         height: 10,
-                  //       ),
-                  //     if (tweet.photoPath != null)
-                  //       Container(
-                  //           decoration: const BoxDecoration(
-                  //               borderRadius:
-                  //                   BorderRadius.all(Radius.circular(50))),
-                  //           child: Image.asset(
-                  //             tweet.photoPath!,
-                  //             width: 480,
-                  //             fit: BoxFit.cover,
-                  //           )),
-                  //     SizedBox(
-                  //       height: 10,
-                  //     ),
-                  //     // Row(
-                  //     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     //   mainAxisSize: MainAxisSize.min,
-                  //     //   children: [
-                  //     //     Expanded(child: Text("sss")),
-                  //     //     Expanded(child: Text("sss")),
-                  //     //     Expanded(child: Text("sss")),
-                  //     //     Expanded(child: Text("sss")),
-                  //     //     Expanded(child: Text("sss")),
-                  //     //     Expanded(child: Text("sss")),
-                  //     //   ],
-                  //     // )
-                  //   ],
-                  ),
+              ),
             ]))));
   }
-  return Container(
-      child: Column(
+  return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
+    mainAxisAlignment: MainAxisAlignment.start,
     children: tweetWidgets,
-  ));
+  );
 }
 
 class FeedState extends State {
@@ -281,17 +283,27 @@ class FeedState extends State {
       getTweets();
     }
     return Container(
+        width: 566,
         margin: const EdgeInsets.only(
             left: 1, right: 1), // don't cover the border??
         decoration: const BoxDecoration(
             border: Border(left: _borderSide, right: _borderSide)),
         child: Column(
-crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
           children: [
             getTopPart(),
-            // getNewTweetPart(),
-            // getNewPostsCountSection(),
-            // getTweetsSection(tweets)
+            Scrollable(
+              viewportBuilder: (context, position) {
+                return Column(
+                  children: [
+                    getNewTweetPart(),
+                    getNewPostsCountSection(),
+                    getTweetsSection(tweets)
+                  ],
+                );
+              },
+            )
           ],
         ));
   }
