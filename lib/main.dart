@@ -68,7 +68,7 @@ class HomeDrawer extends StatelessWidget {
     return Drawer(
         backgroundColor: Colors.black,
         child: DefaultTextStyle(
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
