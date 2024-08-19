@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/feed_panel.dart';
 import 'package:twitter/left_panel.dart';
+import 'package:twitter/right_panel.dart';
 
 void main() {
   runApp(const Twitter());
@@ -80,12 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   LeftPanel(),
                   const FeedPanel(),
                   if (MediaQuery.of(context).size.width > 1141)
-                    const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: SizedBox(
-                          width: 316,
-                          child: Text("TODO: right panel"),
-                        )),
+                    const RightPanel(),
                 ],
               ), // This trailing comma makes auto-formatting nicer for build methods.
             )));

@@ -231,7 +231,7 @@ Widget getTweetsSection(List<Tweet> tweets) {
                         ),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.more_horiz_outlined))
+                            icon: const Icon(Icons.more_horiz_outlined))
                       ],
                     ),
                     Text(tweet.message),
