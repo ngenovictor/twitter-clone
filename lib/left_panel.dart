@@ -19,13 +19,14 @@ class LeftPanel extends StatelessWidget {
     "Profile": Icons.person_outline,
     "More": Icons.more_horiz
   };
-  bool isDrawerItems;
+  final bool isDrawerItems;
 
   LeftPanel({super.key, this.isDrawerItems = false});
 
   @override
   Widget build(BuildContext context) {
     List<Widget> panelIcons = [];
+    bool showIconText = isDrawerItems || Responsive.isDesktop(context);
     _iconElements.forEach(
       (String iconText, IconData icon) {
         panelIcons.add(
@@ -35,14 +36,18 @@ class LeftPanel extends StatelessWidget {
                 backgroundColor: Colors.black,
                 foregroundColor: Colors.white,
                 overlayColor: const Color.fromARGB(255, 238, 238, 238),
-                padding: const EdgeInsets.all(20)),
+                padding: showIconText
+                    ? const EdgeInsets.all(20)
+                    : const EdgeInsets.all(20)),
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(icon),
-                const SizedBox(
-                  width: 10,
-                ),
-                if (isDrawerItems || Responsive.isDesktop(context))
+                if (showIconText)
+                  const SizedBox(
+                    width: 10,
+                  ),
+                if (showIconText)
                   Text(
                     iconText,
                     style: const TextStyle(fontSize: 20),
@@ -55,13 +60,14 @@ class LeftPanel extends StatelessWidget {
       },
     );
 
-    return Padding(
-        padding: const EdgeInsets.only(right: 30),
+    return Container(
+        margin: const EdgeInsets.only(right: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
                 const Image(
                   image: AssetImage("lib/assets/logo-white.png"),
+                  width: 50,
                   height: 50,
                 ),
                 _spaceBetween,

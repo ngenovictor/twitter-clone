@@ -113,13 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   // tablet
                   if (Responsive.isTablet(context))
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: LeftPanel()),
+                    SizedBox(width: 150, child: LeftPanel()),
                   if (Responsive.isTablet(context))
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        child: const FeedPanel()),
+                    const SizedBox(width: 500, child: FeedPanel()),
                   // desktop
                   if (Responsive.isDesktop(context))
                     SizedBox(width: 316, child: LeftPanel()),

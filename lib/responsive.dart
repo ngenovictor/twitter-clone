@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 
+class ResponsiveConstants {
+  static const int maxMobileWidth = 650;
+  static const int maxTabletWidth = 1210;
+}
+
 class Responsive {
-  static isMobile(context) => MediaQuery.of(context).size.width < 650;
+  static isMobile(context) =>
+      MediaQuery.of(context).size.width < ResponsiveConstants.maxMobileWidth;
   static isTablet(context) =>
-      MediaQuery.of(context).size.width >= 650 &&
-      MediaQuery.of(context).size.width < 1100;
-  static isDesktop(context) => MediaQuery.of(context).size.width >= 1100;
+      MediaQuery.of(context).size.width >= ResponsiveConstants.maxMobileWidth &&
+      MediaQuery.of(context).size.width < ResponsiveConstants.maxTabletWidth;
+  static isDesktop(context) =>
+      MediaQuery.of(context).size.width >= ResponsiveConstants.maxTabletWidth;
 }
