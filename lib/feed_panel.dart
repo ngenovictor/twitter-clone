@@ -342,7 +342,7 @@ class FeedState extends State {
       getTweets();
     }
     List<Widget> scrollableWIdgets = [
-          getNewTweetPart(),
+          if (!Responsive.isMobile(context)) getNewTweetPart(),
           getNewPostsCountSection(),
         ] +
         getTweetsSection(tweets);
@@ -358,6 +358,51 @@ class FeedState extends State {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
+            if (Responsive.isMobile(context))
+              SizedBox(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                      style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          backgroundColor: Colors.transparent),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Image.asset(
+                          "lib/assets/profile-pic.jpg",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          backgroundColor: Colors.transparent),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Image.asset(
+                          "lib/assets/logo-white.png",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Get Premium",
+                          style: TextStyle(
+                              color: CustomColors.twitterBrightBlue,
+                              fontWeight: FontWeight.w800),
+                        ))
+                  ],
+                ),
+              ),
             getTopPart(),
             Expanded(
                 child: SingleChildScrollView(
