@@ -155,13 +155,17 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           : null,
       floatingActionButton: Responsive.isMobile(context)
-          ? ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: CustomColors.twitterBrightBlue,
-                  foregroundColor: Colors.white, // for
-                  padding: const EdgeInsets.only(top: 20, bottom: 20)),
-              child: const Icon(Icons.chat),
+          ? SizedBox(
+              width: 50,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: CustomColors.twitterBrightBlue,
+                    foregroundColor: Colors.white, // for
+                    padding: const EdgeInsets.only()),
+                child: const Icon(Icons.chat),
+              ),
             )
           : null,
     );
