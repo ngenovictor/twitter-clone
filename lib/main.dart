@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/constants/colors.dart';
 import 'package:twitter/feed_panel.dart';
 import 'package:twitter/left_panel.dart';
 import 'package:twitter/responsive.dart';
@@ -89,70 +90,80 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        backgroundColor: Colors.black,
-        drawer: Responsive.isMobile(context) ? const HomeDrawer() : null,
-        body: Container(
-            width: double.infinity,
-            alignment: Alignment.topCenter,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: DefaultTextStyle(
-                style: const TextStyle(color: Colors.white),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // mobile limit width to min360px
-                    if (Responsive.isMobile(context))
-                      SizedBox(
-                          width: MediaQuery.of(context).size.width < 360
-                              ? 360
-                              : MediaQuery.of(context).size.width,
-                          child: const FeedPanel()),
+      backgroundColor: Colors.black,
+      drawer: Responsive.isMobile(context) ? const HomeDrawer() : null,
+      body: Container(
+          width: double.infinity,
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: DefaultTextStyle(
+              style: const TextStyle(color: Colors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // mobile limit width to min360px
+                  if (Responsive.isMobile(context))
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width < 360
+                            ? 360
+                            : MediaQuery.of(context).size.width,
+                        child: const FeedPanel()),
 
-                    // tablet
-                    if (Responsive.isTablet(context))
-                      SizedBox(width: 150, child: LeftPanel()),
-                    if (Responsive.isTablet(context))
-                      const SizedBox(width: 500, child: FeedPanel()),
-                    // desktop
-                    if (Responsive.isDesktop(context))
-                      SizedBox(width: 316, child: LeftPanel()),
-                    if (Responsive.isDesktop(context))
-                      const SizedBox(width: 566, child: FeedPanel()),
-                    if (Responsive.isDesktop(context))
-                      const SizedBox(width: 316, child: RightPanel()),
-                  ],
-                ), // This trailing comma makes auto-formatting nicer for build methods.
+                  // tablet
+                  if (Responsive.isTablet(context))
+                    SizedBox(width: 150, child: LeftPanel()),
+                  if (Responsive.isTablet(context))
+                    const SizedBox(width: 500, child: FeedPanel()),
+                  // desktop
+                  if (Responsive.isDesktop(context))
+                    SizedBox(width: 316, child: LeftPanel()),
+                  if (Responsive.isDesktop(context))
+                    const SizedBox(width: 566, child: FeedPanel()),
+                  if (Responsive.isDesktop(context))
+                    const SizedBox(width: 316, child: RightPanel()),
+                ],
+              ), // This trailing comma makes auto-formatting nicer for build methods.
+            ),
+          )),
+      bottomNavigationBar: Responsive.isMobile(context)
+          ? Theme(
+              data: Theme.of(context).copyWith(canvasColor: Colors.black),
+              child: BottomNavigationBar(
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.home_outlined,
+                      ),
+                      label: "Home"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.search), label: "Explore"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.crop_square_outlined), label: "Grok"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.notifications_none_rounded),
+                      label: "Notifications"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.mail_outline), label: "Messages"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.people_alt_outlined), label: "Profile"),
+                ],
+                showSelectedLabels: false,
+                iconSize: 30,
               ),
-            )),
-        bottomNavigationBar: Responsive.isMobile(context)
-            ? Theme(
-                data: Theme.of(context).copyWith(canvasColor: Colors.black),
-                child: BottomNavigationBar(
-                  items: const [
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                          Icons.home_outlined,
-                        ),
-                        label: "Home"),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.search), label: "Explore"),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.crop_square_outlined), label: "Grok"),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.notifications_none_rounded),
-                        label: "Notifications"),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.mail_outline), label: "Messages"),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.people_alt_outlined),
-                        label: "Profile"),
-                  ],
-                  showSelectedLabels: false,
-                  iconSize: 30,
-                ),
-              )
-            : null);
+            )
+          : null,
+      floatingActionButton: Responsive.isMobile(context)
+          ? ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: CustomColors.twitterBrightBlue,
+                  foregroundColor: Colors.white, // for
+                  padding: const EdgeInsets.only(top: 20, bottom: 20)),
+              child: const Icon(Icons.chat),
+            )
+          : null,
+    );
   }
 }
