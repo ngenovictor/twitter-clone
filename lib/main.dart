@@ -72,7 +72,7 @@ class HomeDrawer extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              LeftPanel(isDrawerItems: true),
+              LeftPanel(),
             ],
           ),
         ));
