@@ -102,11 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // mobile limit width to min415px
+                    // mobile limit width to min360px
                     if (Responsive.isMobile(context))
                       SizedBox(
-                          width: MediaQuery.of(context).size.width < 415
-                              ? 415
+                          width: MediaQuery.of(context).size.width < 360
+                              ? 360
                               : MediaQuery.of(context).size.width,
                           child: const FeedPanel()),
 
