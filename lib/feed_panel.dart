@@ -250,10 +250,11 @@ List<Widget> getTweetsSection(List<Tweet> tweets) {
                             Icons.chat_bubble_outline,
                             color: greyTextColor,
                           ),
-                          Text(
-                            tweet.comments.toString(),
-                            style: TextStyle(color: greyTextColor),
-                          )
+                          if (tweet.comments > 0)
+                            Text(
+                              tweet.comments.toString(),
+                              style: TextStyle(color: greyTextColor),
+                            )
                         ])),
                         Expanded(
                             child: Row(children: [
@@ -261,10 +262,11 @@ List<Widget> getTweetsSection(List<Tweet> tweets) {
                             FontAwesomeIcons.retweet,
                             color: greyTextColor,
                           ),
-                          Text(
-                            tweet.retweets.toString(),
-                            style: TextStyle(color: greyTextColor),
-                          )
+                          if (tweet.retweets > 0)
+                            Text(
+                              tweet.retweets.toString(),
+                              style: TextStyle(color: greyTextColor),
+                            )
                         ])),
                         Expanded(
                             child: Row(children: [
@@ -272,10 +274,11 @@ List<Widget> getTweetsSection(List<Tweet> tweets) {
                             Icons.favorite_border_outlined,
                             color: greyTextColor,
                           ),
-                          Text(
-                            tweet.likes.toString(),
-                            style: TextStyle(color: greyTextColor),
-                          )
+                          if (tweet.likes > 0)
+                            Text(
+                              tweet.likes.toString(),
+                              style: TextStyle(color: greyTextColor),
+                            )
                         ])),
                         Expanded(
                             child: Row(children: [
@@ -283,10 +286,11 @@ List<Widget> getTweetsSection(List<Tweet> tweets) {
                             Icons.bar_chart_outlined,
                             color: greyTextColor,
                           ),
-                          Text(
-                            getCountSummaryText(tweet.views),
-                            style: TextStyle(color: greyTextColor),
-                          )
+                          if (tweet.views > 0)
+                            Text(
+                              getCountSummaryText(tweet.views),
+                              style: TextStyle(color: greyTextColor),
+                            )
                         ])),
                         Expanded(
                             child: Row(children: [
