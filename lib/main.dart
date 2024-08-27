@@ -93,6 +93,29 @@ class _MyHomePageState extends State<MyHomePage> {
         drawer: Responsive.isMobile(context) ? const HomeDrawer() : null,
         appBar: Responsive.isMobile(context)
             ? AppBar(
+                leading: Builder(
+                  builder: (BuildContext childContext) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        Scaffold.of(childContext).openDrawer();
+                      },
+                      style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          backgroundColor: Colors.transparent),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Image.asset(
+                          "lib/assets/profile-pic.jpg",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+// IconButton.filled(
+//                     onPressed: () {},
+//                     icon: const ImageIcon(
+//                         AssetImage("lib/assets/profile-pic.jpg"))),
                 backgroundColor: Colors.black,
               )
             : null,
