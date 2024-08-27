@@ -43,7 +43,10 @@ class LeftPanel extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(icon),
+                Icon(
+                  icon,
+                  size: 30,
+                ),
                 if (showIconText)
                   const SizedBox(
                     width: 10,
