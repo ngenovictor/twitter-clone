@@ -125,6 +125,34 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ), // This trailing comma makes auto-formatting nicer for build methods.
               ),
-            )));
+            )),
+        bottomNavigationBar: Responsive.isMobile(context)
+            ? Theme(
+                data: Theme.of(context).copyWith(canvasColor: Colors.black),
+                child: BottomNavigationBar(
+                  items: const [
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.home_outlined,
+                        ),
+                        label: "Home"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.search), label: "Explore"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.crop_square_outlined), label: "Grok"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.notifications_none_rounded),
+                        label: "Notifications"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.mail_outline), label: "Messages"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.people_alt_outlined),
+                        label: "Profile"),
+                  ],
+                  showSelectedLabels: false,
+                  iconSize: 30,
+                ),
+              )
+            : null);
   }
 }
